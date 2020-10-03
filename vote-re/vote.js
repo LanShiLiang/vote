@@ -11,9 +11,7 @@ const http = require('http')
 const _ = require('lodash')
 
 
-const uploader = multer({
-  dest: __dirname + '/uploads/'
-})
+
 
 const app = express()
 const port = 8081
@@ -25,7 +23,6 @@ const wss = new WebSocket.Server({
 
 //投票id到定阅这个投票信息更新的websocker的映射
 var voteIdMapWs = {}
-
 wss.on('connection', async (ws, req) => {
   var voteId = req.url.split('/').slice(-1)[0]
   console.log('将会把投票', voteId, '的实时信息发送到客户端')
@@ -175,7 +172,7 @@ app.post('/voteup/:voteId', async (req, res, next) => {
   var voteId = req.params.voteId
   var body = req.body
   var vote = await db.get('SELECT rowid AS id, * FROM votes WHERE id = ?', voteId)
-
+    console.log('body',body)
   if (Date.now() > new Date(vote.deadline).getTime()) {
     res.status(401).end({
       code: -1,
@@ -186,9 +183,11 @@ app.post('/voteup/:voteId', async (req, res, next) => {
 
   if (!vote.isMultiple) { //单选
     // 删除之前可能投的一票
-    await db.run('DELETE FROM votings WHERE userId = ? AND voteId = ?', req.user.id, voteId)
+    await db.run('DELETE FROM votings WHERE userId = ? AND voteId = ?', [req.user.id, voteId])
     // 增加这次的选项
+    if (!req.body.isVoteDown) {
     await db.run('INSERT INTO votings VALUES (?, ?, ?)', [voteId, body.optionId, req.user.id])
+    }
     res.end()
   } else { //多选
     console.log('多选加票', req.body)
@@ -201,7 +200,7 @@ app.post('/voteup/:voteId', async (req, res, next) => {
   broadcast(voteId)
 })
 
-
+//删除用户个人投票
 app.delete('/vote/:id', async (req, res, next) => {
   var deleteId = req.params.id
   try {
@@ -227,34 +226,41 @@ app.get('/myvotes', async (req, res, next) => {
 })
 
 
-//节流函数 使websocket信息在另外用户的终端间歇性刷新 1500毫秒执行一次
+//节流函数 使websocket信息在另外用户的终端间歇性刷新 x毫秒执行一次
 var broadcast = _.throttle(async function broadcast(voteId) {
   var websockets = voteIdMapWs[voteId] || []
   var votings = await db.all('SELECT votings.rowid AS id, * FROM votings JOIN user ON userId = user.id WHERE voteId = ?', voteId)
   for (var ws of websockets) {
     ws.send(JSON.stringify(votings))
   }
-}, 1500, {
+}, 10, {
   leading: false
 })
-
-
+//注册 上传头像
+const uploader = multer({
+  dest: __dirname + '/uploads/'
+})
 app.route('/register')
   .post(uploader.single('avatar'), async (req, res, next) => {
     var user = req.body
     var file = req.file
-
-    var targetName = file.path + '-' + file.originalname
-
-    await fsp.rename(file.path, targetName)
-
-    var avatarOnlineUrl = '/uploads/' + path.basename(targetName)
+    if(file){
+      var targetName = file.path + '-' + file.originalname
+      //fsp.rename修改文件名称，可更改文件存放路径
+      await fsp.rename(file.path, targetName)
+      console.log(targetName)
+      var avatarOnlineUrl = '/uploads/' + path.basename(targetName)
+    }else{
+      var avatarOnlineUrl = '/uploads/default-avatar.jpg'
+    }
+    console.log('收到注册请求',user,file)
 
     try {
       await db.run(
         `INSERT INTO users VALUES (?, ?, ?, ?)`,
         [user.name, user.password, user.email, avatarOnlineUrl]
       )
+
       res.json({
         msg: '注册成功',
       })
