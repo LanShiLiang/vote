@@ -1,0 +1,107 @@
+
+input::placeholder{
+  opacity: 0.6;
+}
+.ant-input{
+  font-size: 16px;
+}
+.create-votes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+    .cv-title{
+      input{
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+    }
+    input:focus{
+        box-shadow: none;
+        font-weight: 300;
+      }
+    #create-ul{
+      overflow: hidden;
+      transition:.3s;
+    }
+    li {
+    display: flex;
+    height: 55px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 2px solid rgb(243, 244, 246);
+    input{
+      outline-style: none;
+      border:0px;
+      height: 100%;
+    }
+    //红色删除
+    .redX {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4%;
+        width: auto;
+        height: 100%;
+        font-size: 0.9rem;
+        color: rgb(253, 82, 81);
+        svg {
+          font-size: 1.4rem;
+        }
+    }
+  }
+    >div:first-child{
+      transition: 1s;
+      background-color: rgb(253, 82, 81);
+    }
+    //添加选项
+    .setOptions{
+        display: flex;
+        height: 55px;
+        padding-left: 4%;
+        justify-content: start;
+        align-items: center;
+        color: rgb(36, 108, 242);
+        background-color: #fff;
+        border-bottom: 1px solid rgb(243, 244, 246);
+        margin-bottom:1.2rem ;
+      svg {
+        font-size: 1.4rem;
+        margin-right: 0.6rem;
+        }
+      }
+      //大标题
+  &>:first-child {
+    font-weight: 550;
+    font-size: 120%;
+    height: 60px;
+    text-align: justify;
+    padding-left: 6px;
+    line-height: 60px;
+    margin: 0;
+  }
+
+  #cv-bottom{
+    display: flex;
+    .ant-picker{
+      outline-style: none;
+      border: none;
+    }
+    +.create-now{
+      display: flex;
+      justify-content: center;
+      background-color: rgb(243, 244, 246);
+      button{
+        width: 22rem;
+        height: 2.5rem;
+        border-radius: 0.4rem;
+      }
+    }
+    background-color: #fff;
+    flex-direction: column;
+    padding-left:1em;
+    padding-right:1em;
+  }
+
+}

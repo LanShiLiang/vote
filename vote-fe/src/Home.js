@@ -3,6 +3,11 @@ import {Link, useHistory, useRouteMatch,Route,Redirect,NavLink} from 'react-rout
 import axios from 'axios'
 import Create from './Create'
 import My from './My'
+import {
+  FolderAddFilled,
+  IdcardFilled
+} from '@ant-design/icons'
+
 
 export default function Home({userInfo,setUserInfo}){
   let {path,url} = useRouteMatch()
@@ -23,11 +28,18 @@ export default function Home({userInfo,setUserInfo}){
         <My setUserInfo={setUserInfo}/>
       </Route>
 
-      <div>
-        <NavLink activeClassName="active" to={`${url}/create`}>新建</NavLink>
-        |
-        <NavLink activeClassName="active" to={`${url}/my`}>我的</NavLink>
+      <div className="foot-bar">
+        <NavLink className='fb f-create' activeClassName="active" to={`${url}/create`}>
+          <FolderAddFilled />
+          新建
+          </NavLink>
+
+        <NavLink className='fb f-my' activeClassName="active" to={`${url}/my`}>
+          <IdcardFilled />
+          我的
+          </NavLink>
       </div>
+
 
 
       {/* <div><Link to="/create-vote">创建单选</Link></div>

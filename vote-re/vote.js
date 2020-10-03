@@ -201,6 +201,17 @@ app.post('/voteup/:voteId', async (req, res, next) => {
   broadcast(voteId)
 })
 
+
+app.delete('/vote/:id', async (req, res, next) => {
+  var deleteId = req.params.id
+  try {
+    console.log(req.params)
+    await db.run('DELETE from votes WHERE rowid = ?', [deleteId])
+    res.end()
+  } catch (error) {
+    res.end(error)
+  }
+})
 //获取用户个人投票信息
 app.get('/myvotes', async (req, res, next) => {
   if (!req.user) {

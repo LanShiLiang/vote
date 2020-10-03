@@ -1,9 +1,6 @@
 import React,{useEffect,useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import {
-  HashRouter,
-  Link,
   Redirect,
   Route,
   Switch,
@@ -14,6 +11,7 @@ import Home from './Home'
 import Login from './Login'
 import CreateVote from './CreateVote'
 import ViewVote from './ViewVote'
+import Register from './Register'
 
 function App() {
   let history = useHistory()
@@ -38,6 +36,9 @@ function App() {
 
         <Route path="/login">
           <Login setUserInfo={setUserInfo}/>
+        </Route>
+        <Route path="/register">
+          <Register />
         </Route>
         <Route path="/home">
           {

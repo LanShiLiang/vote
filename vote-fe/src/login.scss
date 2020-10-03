@@ -1,0 +1,23 @@
+
+  #login-father {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    #login{
+      margin-top: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .ant-input-affix-wrapper{
+        margin-bottom: 10px;
+      }
+      input{
+        height:30px;
+      }
+      >button{
+        margin-top: 20px;
+        width: 80px;
+      }
+    }
+  }
