@@ -109,7 +109,6 @@ export default function ViewVote({userInfo}){
 
     })
     // console.log('post --- res.data:'+ res.data)
-    //单选时接收后台数据
   }
 
   if (loading) {
