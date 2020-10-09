@@ -1,10 +1,9 @@
 import React,{useRef} from 'react'
 import axios from 'axios'
-import { HashRouter, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {
   UserOutlined,
   LockOutlined,
-  SmileOutlined,
   MailOutlined,
   LoadingOutlined,
   PlusOutlined
@@ -12,7 +11,6 @@ import {
 import {Input,Button,Upload,message} from 'antd'
 import './login.scss'
 import './Register.scss'
-import Form from 'antd/lib/form/Form';
 
 
 let avatar = {}
@@ -95,8 +93,8 @@ export default function Register({setUserInfo}){
     formData.append('password', passwordRef.current.state.value)
     formData.append('email', emailRef.current.state.value)
     formData.append('avatar', avatar.file)
-    if (nameRef.current.state.value == undefined || passwordRef.current.state.value == undefined
-        || emailRef.current.state.value == undefined){
+    if (nameRef.current.state.value === undefined || passwordRef.current.state.value === undefined
+        || emailRef.current.state.value === undefined){
           alert('请填写完整注册信息')
           return
         }

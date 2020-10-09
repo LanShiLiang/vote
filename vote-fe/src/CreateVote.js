@@ -6,7 +6,6 @@ import {Input,Button,Switch, DatePicker} from 'antd'
 import {MinusCircleFilled,PlusCircleFilled} from '@ant-design/icons'
 import "./createVote.scss"
 import {useHistory, useLocation} from 'react-router-dom'
-import { curry } from 'lodash'
 
 function useQuery(){
   return new URLSearchParams(useLocation().search);
@@ -52,7 +51,7 @@ export default function CreateSingleVote(){
     return current <= moment().add(1,'days').startOf('day')
   }
   function DateOnChange(date,dateString){
-    console.log('date+dateString',date,dateString)
+    // console.log('date+dateString',date,dateString)
     setDeadline(dateString)
   }
   useEffect(() => {
@@ -60,8 +59,8 @@ export default function CreateSingleVote(){
       ()=>{
         let Ul = document.getElementById('create-ul')
         let Li = document.getElementsByClassName('create-li')
-        console.log('ul', Ul)
-        console.log('li', Li)
+        // console.log('ul', Ul)
+        // console.log('li', Li)
         if (Li[0]) {
           let h = Li[0].offsetHeight
           h = h * Li.length
@@ -86,7 +85,7 @@ export default function CreateSingleVote(){
               placeholder = "选项"
               onChange = {
                 (e) => {
-                 e.persist();console.log(e.target.value); setOptions([...options.slice(0, idx), e.target.value, ...options.slice(idx + 1)]);
+                 e.persist();setOptions([...options.slice(0, idx), e.target.value, ...options.slice(idx + 1)]);
                 }
               }
               />

@@ -1,6 +1,5 @@
 import React from 'react'
-import {Link, useHistory, useRouteMatch,Route,Redirect,NavLink} from 'react-router-dom'
-import axios from 'axios'
+import {useRouteMatch,Route,Redirect,NavLink} from 'react-router-dom'
 import Create from './Create'
 import My from './My'
 import {
@@ -9,9 +8,8 @@ import {
 } from '@ant-design/icons'
 
 
-export default function Home({userInfo,setUserInfo}){
-  let {path,url} = useRouteMatch()
-  let history = useHistory()
+export default function Home({setUserInfo}){
+  let {url} = useRouteMatch()
 
 
 

@@ -18,7 +18,7 @@ function App() {
   let [userInfo,setUserInfo] = useState({})
   useEffect(() => { //useEffect 传空数组只渲染一次
     axios.get('/userinfo').then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       setUserInfo(res.data)
     }).catch(e => {
       // console.log('未登录,将显示登陆界面')
@@ -29,7 +29,6 @@ function App() {
   return (
       <div className="App">
       <Switch>
-
         <Route path="/" exact>
           <Redirect to="home"></Redirect>
         </Route>
@@ -55,7 +54,6 @@ function App() {
           <ViewVote userInfo={userInfo}/>
           }
         </Route>
-
       </Switch>
     </div>
   );

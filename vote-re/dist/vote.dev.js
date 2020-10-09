@@ -287,7 +287,10 @@ app.get('/vote/:id', function _callee4(req, res, next) {
         case 9:
           votings = _context4.sent;
           vote.options = options;
-          vote.votings = votings;
+          vote.votings = votings; // console.log('options',options)
+          // console.log('votings',votings)
+          // console.log('vote',vote)
+
           res.json(vote);
 
         case 13:
@@ -317,10 +320,9 @@ app.post('/voteup/:voteId', function _callee5(req, res, next) {
 
         case 4:
           vote = _context5.sent;
-          console.log('body', body);
 
           if (!(Date.now() > new Date(vote.deadline).getTime())) {
-            _context5.next = 9;
+            _context5.next = 8;
             break;
           }
 
@@ -330,51 +332,51 @@ app.post('/voteup/:voteId', function _callee5(req, res, next) {
           });
           return _context5.abrupt("return");
 
-        case 9:
+        case 8:
           if (vote.isMultiple) {
-            _context5.next = 18;
+            _context5.next = 17;
             break;
           }
 
-          _context5.next = 12;
+          _context5.next = 11;
           return regeneratorRuntime.awrap(db.run('DELETE FROM votings WHERE userId = ? AND voteId = ?', [req.user.id, voteId]));
 
-        case 12:
+        case 11:
           if (req.body.isVoteDown) {
-            _context5.next = 15;
+            _context5.next = 14;
             break;
           }
 
-          _context5.next = 15;
+          _context5.next = 14;
           return regeneratorRuntime.awrap(db.run('INSERT INTO votings VALUES (?, ?, ?)', [voteId, body.optionId, req.user.id]));
 
-        case 15:
+        case 14:
           res.end();
-          _context5.next = 25;
+          _context5.next = 24;
           break;
 
-        case 18:
+        case 17:
           //多选
           console.log('多选加票', req.body);
-          _context5.next = 21;
+          _context5.next = 20;
           return regeneratorRuntime.awrap(db.run('DELETE FROM votings WHERE voteId = ? AND optionId = ? AND userId = ?', [voteId, body.optionId, req.user.id]));
 
-        case 21:
+        case 20:
           if (req.body.isVoteDown) {
-            _context5.next = 24;
+            _context5.next = 23;
             break;
           }
 
-          _context5.next = 24;
+          _context5.next = 23;
           return regeneratorRuntime.awrap(db.run('INSERT INTO votings VALUES (?, ?, ?)', [voteId, body.optionId, req.user.id]));
 
-        case 24:
+        case 23:
           res.end();
 
-        case 25:
+        case 24:
           broadcast(voteId);
 
-        case 26:
+        case 25:
         case "end":
           return _context5.stop();
       }
@@ -507,8 +509,8 @@ var broadcast = _.throttle(function broadcast(voteId) {
       }
     }
   }, null, null, [[7, 11, 15, 23], [16,, 18, 22]]);
-}, 10, {
-  leading: false
+}, 100, {
+  loading: false
 }); //注册 上传头像
 
 

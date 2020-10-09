@@ -1,6 +1,6 @@
 import React,{useRef} from 'react'
 import axios from 'axios'
-import { HashRouter, useHistory} from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Input,Button} from 'antd'
 import './login.scss'

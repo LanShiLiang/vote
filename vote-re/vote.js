@@ -158,7 +158,9 @@ app.get('/vote/:id', async (req, res, next) => {
   var votings = await db.all('SELECT votings.rowid AS id, * FROM votings JOIN user ON userId = user.id WHERE voteId = ?', id)
   vote.options = options
   vote.votings = votings
-
+  // console.log('options',options)
+  // console.log('votings',votings)
+  // console.log('vote',vote)
   res.json(vote)
 })
 // 用户对某个选项发起的投票
@@ -172,7 +174,6 @@ app.post('/voteup/:voteId', async (req, res, next) => {
   var voteId = req.params.voteId
   var body = req.body
   var vote = await db.get('SELECT rowid AS id, * FROM votes WHERE id = ?', voteId)
-    console.log('body',body)
   if (Date.now() > new Date(vote.deadline).getTime()) {
     res.status(401).end({
       code: -1,
@@ -233,8 +234,8 @@ var broadcast = _.throttle(async function broadcast(voteId) {
   for (var ws of websockets) {
     ws.send(JSON.stringify(votings))
   }
-}, 10, {
-  leading: false
+}, 100, {
+  loading: false
 })
 //注册 上传头像
 const uploader = multer({
