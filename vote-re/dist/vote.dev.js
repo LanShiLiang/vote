@@ -509,7 +509,7 @@ var broadcast = _.throttle(function broadcast(voteId) {
       }
     }
   }, null, null, [[7, 11, 15, 23], [16,, 18, 22]]);
-}, 100, {
+}, 40, {
   loading: false
 }); //注册 上传头像
 

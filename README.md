@@ -2,7 +2,9 @@
 
 ### 已经打包完成 在后端(vote-re)用node 执行 `node vote.js` 即可在8081端口查看效果
 
-### 前端(vote-fe) `npm start`即可启动开发者模式在本地 3000端口预览
+项目已经上线，预览地址 http://www.douti.top
+
+### 前端(vote-fe) `npm start`即可启动开发者模式在本地 3000端口调试预览
 
 #### 关于本项目:
 

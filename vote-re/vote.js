@@ -234,7 +234,7 @@ var broadcast = _.throttle(async function broadcast(voteId) {
   for (var ws of websockets) {
     ws.send(JSON.stringify(votings))
   }
-}, 100, {
+}, 40, {
   loading: false
 })
 //注册 上传头像
