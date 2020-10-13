@@ -141,7 +141,7 @@ export default function ViewVote({userInfo}){
                     <div className="bgc-white">
                       <div className="view-option">
                         <div>
-                          < Checkbox
+                          <Checkbox
                           checked = {
                             hasCurrUserVoted
                           }
