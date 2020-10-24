@@ -37,8 +37,8 @@ export default function ViewVote({userInfo}){
     })
   }, [id])
 
+  //用于接收某个vote的新的选票信息
   useEffect(() => {
-    //用于接收某个vote的新的选票信息
     if(voteInfo) {
       if(Date.now() < new Date(voteInfo.deadline).getTime()){
         console.log('ws 重新连接')
@@ -130,9 +130,9 @@ export default function ViewVote({userInfo}){
             // console.log('groupedVotings:',groupedVotings)
             // console.log('currVotings', currVotings)
             // console.log('userInfo:',userInfo,option)
-            let hasCurrUserVoted
-
-              hasCurrUserVoted = !!currVotings.find(it => it.userId === userInfo.id)
+            if(votings){
+              var hasCurrUserVoted = !!currVotings.find(it => it.userId === userInfo.id)
+            }
 
             //这个选项是哪个用户投的
             // console.log("hasCurrUserVoted:",hasCurrUserVoted)

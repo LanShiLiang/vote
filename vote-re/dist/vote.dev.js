@@ -721,78 +721,53 @@ app.route('/forgot').get(function (req, res, next) {
     }
   });
 });
-app.route('/change-password/:id').get(function _callee13(req, res, next) {
-  var user;
-  return regeneratorRuntime.async(function _callee13$(_context14) {
-    while (1) {
-      switch (_context14.prev = _context14.next) {
-        case 0:
-          user = changePasswordMap[req.params.id];
-
-          if (user) {
-            res.render('change-password.pug', {
-              user: user
-            });
-          } else {
-            res.end('link has expired');
-          }
-
-        case 2:
-        case "end":
-          return _context14.stop();
-      }
+/* app.route('/change-password/:id')
+  .get(async (req, res, next) => {
+    var user = changePasswordMap[req.params.id]
+    if (user) {
+      res.render('change-password.pug', {
+        user: user,
+      })
+    } else {
+      res.end('link has expired')
     }
-  });
-}).post(function _callee14(req, res, next) {
-  var user;
-  return regeneratorRuntime.async(function _callee14$(_context15) {
-    while (1) {
-      switch (_context15.prev = _context15.next) {
-        case 0:
-          user = changePasswordMap[req.params.id];
-          _context15.next = 3;
-          return regeneratorRuntime.awrap(db.run('UPDATE users SET password = ? WHERE name = ?', req.body.password, user.name));
+  })
+  .post(async (req, res, next) => {
+    var user = changePasswordMap[req.params.id]
+    await db.run('UPDATE users SET password = ? WHERE name = ?', req.body.password, user.name)
+    delete changePasswordMap[req.params.id]
+    res.end('password change success!')
+  }) */
 
-        case 3:
-          delete changePasswordMap[req.params.id];
-          res.end('password change success!');
-
-        case 5:
-        case "end":
-          return _context15.stop();
-      }
-    }
-  });
-});
 app.get('/logout', function (req, res, next) {
   res.clearCookie('user');
   res.end();
 });
-app.get('/user/:id', function _callee15(req, res, next) {
+app.get('/user/:id', function _callee13(req, res, next) {
   var userInfo, userPostsPromise, userCommentsPromise, _ref, _ref2, userPosts, userComments;
 
-  return regeneratorRuntime.async(function _callee15$(_context16) {
+  return regeneratorRuntime.async(function _callee13$(_context14) {
     while (1) {
-      switch (_context16.prev = _context16.next) {
+      switch (_context14.prev = _context14.next) {
         case 0:
-          _context16.next = 2;
+          _context14.next = 2;
           return regeneratorRuntime.awrap(db.get('SELECT * FROM users WHERE rowid = ?', req.params.id));
 
         case 2:
-          userInfo = _context16.sent;
+          userInfo = _context14.sent;
 
           if (!userInfo) {
-            _context16.next = 15;
+            _context14.next = 15;
             break;
           }
 
           userPostsPromise = db.all('SELECT rowid as id, * FROM posts WHERE userId = ? ORDER BY createdAt DESC', req.params.id);
           userCommentsPromise = db.all('SELECT postId, title as postTitle, comments.content, comments.createdAt FROM comments JOIN posts ON postId = posts.rowid WHERE comments.userId = ? ORDER BY comments.createdAt DESC', req.params.id);
-          _context16.next = 8;
+          _context14.next = 8;
           return regeneratorRuntime.awrap(Promise.all([userPostsPromise, userCommentsPromise]));
 
         case 8:
-          _ref = _context16.sent;
+          _ref = _context14.sent;
           _ref2 = _slicedToArray(_ref, 2);
           userPosts = _ref2[0];
           userComments = _ref2[1];
@@ -802,7 +777,7 @@ app.get('/user/:id', function _callee15(req, res, next) {
             userPosts: userPosts,
             userComments: userComments
           });
-          _context16.next = 16;
+          _context14.next = 16;
           break;
 
         case 15:
@@ -810,7 +785,7 @@ app.get('/user/:id', function _callee15(req, res, next) {
 
         case 16:
         case "end":
-          return _context16.stop();
+          return _context14.stop();
       }
     }
   });

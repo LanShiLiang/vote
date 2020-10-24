@@ -1,7 +1,7 @@
 import React from 'react'
 import {useRouteMatch,Route,Redirect,NavLink} from 'react-router-dom'
 import Create from './Create'
-import My from './My'
+import My from '../user/My'
 import {
   FolderAddFilled,
   IdcardFilled

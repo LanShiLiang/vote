@@ -13,7 +13,6 @@ function useQuery(){
 
 export default function CreateSingleVote(){
   let query = useQuery()
-
   let [options,setOptions] = useState(['',''])
   let title = useInput()
   let desc = useInput()
@@ -21,6 +20,7 @@ export default function CreateSingleVote(){
   let anonymous = useBoolean()
   let history = useHistory()
   let isMultiple = useBoolean(query.get('multiple') === '1' ? true : false)
+  var optionKey
     let dateTime = new Date()
     dateTime = dateTime.setDate(dateTime.getDate()+1);
     dateTime = new Date(dateTime).toLocaleString()
@@ -55,6 +55,7 @@ export default function CreateSingleVote(){
     setDeadline(dateString)
   }
   useEffect(() => {
+    optionKey = Symbol()
     setTimeout(
       ()=>{
         let Ul = document.getElementById('create-ul')
@@ -78,7 +79,10 @@ export default function CreateSingleVote(){
       <div id="create-ul" style={{height:'110px'}}>
         {//选项列表
           options.map((it,idx) => {
-            return <li key={it,idx} className="create-li">
+            return <li key = {
+              optionKey
+            }
+            className = "create-li" >
               <div className="redX" onClick={() => handleDeleteOption(idx)}><MinusCircleFilled /></div>
               < Input type = "text"
               value={it}

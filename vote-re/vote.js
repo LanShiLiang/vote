@@ -377,7 +377,7 @@ app.route('/forgot')
     }
   })
 
-app.route('/change-password/:id')
+/* app.route('/change-password/:id')
   .get(async (req, res, next) => {
     var user = changePasswordMap[req.params.id]
     if (user) {
@@ -393,7 +393,7 @@ app.route('/change-password/:id')
     await db.run('UPDATE users SET password = ? WHERE name = ?', req.body.password, user.name)
     delete changePasswordMap[req.params.id]
     res.end('password change success!')
-  })
+  }) */
 
 
 app.get('/logout', (req, res, next) => {

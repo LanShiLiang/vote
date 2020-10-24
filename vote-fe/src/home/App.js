@@ -8,10 +8,10 @@ import {
 }from 'react-router-dom'
 import axios from 'axios'
 import Home from './Home'
-import Login from './Login'
-import CreateVote from './CreateVote'
-import ViewVote from './ViewVote'
-import Register from './Register'
+import Login from '../user/Login'
+import CreateVote from '../cv-votes/CreateVote'
+import ViewVote from '../cv-votes/ViewVote'
+import Register from '../user/Register'
 
 function App() {
   let history = useHistory()
