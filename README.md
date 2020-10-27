@@ -24,9 +24,14 @@
 
 ##### 下表是初始用户数据
 
-Name 	: Password
+userName 	: Password
+
 kingHan   | 123456	
+
 lily		    | 123456	
+
 jim		    | 123456	
+
 undefined | undefined
+
 mgb	      | 123456	
