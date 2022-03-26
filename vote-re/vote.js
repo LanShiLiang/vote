@@ -346,7 +346,7 @@ app.get('/userinfo', async (req, res, next) => {
 var changePasswordMap = {}
 
 app.route('/forgot')
-  .get((req, res, next) => {
+  .get((_, res, next) => {
     res.render('forgot.pug')
   })
   .post(async (req, res, next) => {
