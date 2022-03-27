@@ -9,8 +9,8 @@ import {
   PlusOutlined
 } from '@ant-design/icons';
 import {Input,Button,Upload,message} from 'antd'
-import './login.scss'
-import './Register.scss'
+import './login.less'
+import './Register.less'
 
 
 let avatar = {}

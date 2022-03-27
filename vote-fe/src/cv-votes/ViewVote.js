@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useParams,useHistory,useLocation} from 'react-router-dom';
-import './ViewVote.scss';
+import './ViewVote.less';
 import {groupBy,uniqBy} from 'lodash'
 import { Checkbox } from 'antd';
 

@@ -4,7 +4,7 @@ import axios from 'axios'
 import moment from 'moment'
 import {Input,Button,Switch, DatePicker} from 'antd'
 import {MinusCircleFilled,PlusCircleFilled} from '@ant-design/icons'
-import "./createVote.scss"
+import "./createVote.less"
 import {useHistory, useLocation} from 'react-router-dom'
 
 function useQuery(){

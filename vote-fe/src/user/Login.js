@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useHistory} from 'react-router-dom'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Input,Button} from 'antd'
-import './login.scss'
+import './login.less'
 
 export default function Login({setUserInfo}){
   let nameRef = useRef()
