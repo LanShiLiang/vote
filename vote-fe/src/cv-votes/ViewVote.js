@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import {useParams,useHistory,useLocation} from 'react-router-dom';
-import './ViewVote.scss';
+import {useParams} from 'react-router-dom';
+import './ViewVote.less';
 import {groupBy,uniqBy} from 'lodash'
 import { Checkbox } from 'antd';
 
@@ -12,7 +12,7 @@ export default function ViewVote({userInfo}){
   let [loading, setLoading] = useState(true) //加载中
   let [voteInfo, setVoteInfo] = useState(null)
   let [votings,setVotings] = useState(null)
-  let location = useLocation()
+  // let location = useLocation()
   // let history = useHistory()
   //需要group votings
   let groupedVotings
@@ -157,6 +157,7 @@ export default function ViewVote({userInfo}){
                       <ul className="avatars">
                         {
                           currVotings.map(voting => {
+                            // eslint-disable-next-line jsx-a11y/alt-text
                             return <li key={voting.avatar}><img className="avatar" src={voting.avatar} /></li>
                           })
                         }

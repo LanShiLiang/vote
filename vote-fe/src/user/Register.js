@@ -9,8 +9,8 @@ import {
   PlusOutlined
 } from '@ant-design/icons';
 import {Input,Button,Upload,message} from 'antd'
-import './login.scss'
-import './Register.scss'
+import './login.less'
+import './Register.less'
 
 
 let avatar = {}
@@ -89,6 +89,7 @@ export default function Register({setUserInfo}){
   async function handleRegister(e){
     e.preventDefault()
     let formData = new FormData()
+    console.log(nameRef.current.state, "nameRef.current");
     formData.append('name', nameRef.current.state.value)
     formData.append('password', passwordRef.current.state.value)
     formData.append('email', emailRef.current.state.value)
