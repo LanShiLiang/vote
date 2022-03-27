@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.6.5",
     "axios": "^0.20.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
     "lodash": "^4.17.20",
     "moment": "^2.29.0",
     "react": "^16.13.1",
@@ -39,9 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8081/",
-  "devDependencies": {
-    "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.2"
-  }
+  "proxy": "http://localhost:8081/"
 }

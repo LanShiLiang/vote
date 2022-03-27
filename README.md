@@ -5,7 +5,7 @@
 项目已经上线，预览地址 http://www.douti.top
 
 ### 前端(vote-fe) `npm start`即可启动开发者模式在本地 3000端口调试预览
-
+* 遇到node-sass报错请阅读此文档改变node-sass版本：https://www.npmjs.com/package/node-sass
 #### 关于本项目:
 
 * 框架：**react**、亮点：**websocket**，两个用户可以实时进行投票通信
@@ -26,12 +26,12 @@
 
 userName 	: Password
 
-kingHan   | 123456	
+kingHan   | 123456
 
-lily		    | 123456	
+lily		    | 123456
 
-jim		    | 123456	
+jim		    | 123456
 
 undefined | undefined
 
-mgb	      | 123456	
+mgb	      | 123456
