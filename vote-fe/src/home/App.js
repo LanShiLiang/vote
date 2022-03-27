@@ -16,14 +16,19 @@ import Register from '../user/Register'
 function App() {
   let history = useHistory()
   let [userInfo,setUserInfo] = useState({})
-  useEffect(() => { //useEffect 传空数组只渲染一次
-    axios.get('/userinfo').then(res => {
-      // console.log(res.data)
-      setUserInfo(res.data)
-    }).catch(e => {
-      // console.log('未登录,将显示登陆界面')
-      history.push('/login')
-    })
+  useEffect(() => {
+    //useEffect 传空数组只渲染一次
+    axios
+      .get("/userinfo")
+      .then((res) => {
+        // console.log(res.data)
+        setUserInfo(res.data);
+      })
+      .catch((e) => {
+        // console.log('未登录,将显示登陆界面')
+        history.push("/login");
+      });
+    // eslint-disable-next-line
   },[])
 
   return (
