@@ -1,5 +1,5 @@
 import React from 'react'
-import './create.less'
+import './Create.less'
 import {Link} from 'react-router-dom'
 import {
   DiffTwoTone

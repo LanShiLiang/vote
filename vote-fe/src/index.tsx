@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.less';
 import App from './home/App';
 import * as serviceWorker from './serviceWorker';
-import {HashRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
      <HashRouter>
