@@ -39,10 +39,6 @@ export default function Home({
           我的
         </NavLink>
       </div>
-
-      {/* <div><Link to="/create-vote">创建单选</Link></div>
-      <div><Link to="/create-vote?multiple=1">创建多选</Link></div>
-      <button onClick={logout}>登出</button> */}
     </div>
   );
 }

@@ -14,7 +14,6 @@ const useMainPageInfo = () => {
         setUserInfo(res.data);
       })
       .catch(() => {
-        // console.log("未登录,将显示登陆界面");
         history.push("/login");
       });
     // eslint-disable-next-line

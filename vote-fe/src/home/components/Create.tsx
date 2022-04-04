@@ -17,7 +17,6 @@ export default function Create(){
         < DiffTwoTone />
       <Link to="/create-vote?multiple=1"><div>创建多选</div></Link>
       </div>
-
     </div>
   )
 }
