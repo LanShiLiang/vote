@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useInput, useBoolean } from "react-hanger";
+import React, { useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Input, Button, Switch, DatePicker } from "antd";
 import { MinusCircleFilled, PlusCircleFilled } from "@ant-design/icons";
 import "./createVote.less";
-import { useHistory, useLocation } from "react-router-dom";
+import { useCreate } from "./hooks"
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 export default function CreateSingleVote() {
-  let query = useQuery();
-  let [options, setOptions] = useState(["", ""]);
-  let title = useInput();
-  let desc = useInput();
-  let [deadline, setDeadline] = useState("");
-  let anonymous = useBoolean();
-  let history = useHistory();
-  let isMultiple = useBoolean(query.get("multiple") === "1" ? true : false);
-  let optionKey;
-  let dateTime = new Date();
+  const [options, setOptions] = useState(["", ""]);
+  const [deadline, setDeadline] = useState("");
+  const { isMultiple, title, desc, anonymous, history } = useCreate();
+  // let optionKey: Symbol;
+  let dateTime: Date | number | string = new Date();
   dateTime = dateTime.setDate(dateTime.getDate() + 1);
   dateTime = new Date(dateTime).toLocaleString();
 
-  function handleDeleteOption(idx) {
+  function handleDeleteOption(idx: number): void {
     if (options.length === 2) {
       return;
     }
@@ -34,7 +25,7 @@ export default function CreateSingleVote() {
   async function createVote() {
     try {
       debugger;
-      var res = await axios.post("/vote", {
+      const res = await axios.post("/vote", {
         title: title.value,
         desc: desc.value,
         options: options,
@@ -43,32 +34,17 @@ export default function CreateSingleVote() {
         isMultiple: isMultiple.value ? 1 : 0,
       });
       history.push("/vote/" + res.data.voteId);
-    } catch (e) {
+    } catch (e: any) {
       alert("创建失败" + e.toString());
     }
   }
   function disabledDate(current) {
-    return current <= moment().add(1, "days").startOf("day");
+    return current <= Number(moment().add(1, "days").startOf("day"));
   }
-  function DateOnChange(date, dateString) {
-    // console.log('date+dateString',date,dateString)
+  function DateOnChange(_: any, dateString: React.SetStateAction<string>) {
     setDeadline(dateString);
   }
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    optionKey = Symbol();
-    setTimeout(() => {
-      let Ul = document.getElementById("create-ul");
-      let Li = document.getElementsByClassName("create-li");
-      // console.log('ul', Ul)
-      // console.log('li', Li)
-      if (Li[0]) {
-        let h = Li[0].offsetHeight;
-        h = h * Li.length;
-        Ul.setAttribute("style", `height:${h}px;`);
-      }
-    }, 100);
-  });
+
 
   return (
     <div className="create-votes">
@@ -94,7 +70,7 @@ export default function CreateSingleVote() {
           //选项列表
           options.map((it, idx) => {
             return (
-              <li key={optionKey} className="create-li">
+              <li key={idx} className="create-li">
                 <div className="redX" onClick={() => handleDeleteOption(idx)}>
                   <MinusCircleFilled />
                 </div>
@@ -136,7 +112,7 @@ export default function CreateSingleVote() {
           <Switch
             checkedChildren="开启"
             unCheckedChildren="关闭"
-            checked={anonymous.valuechecked}
+            checked={anonymous.value}
             onClick={anonymous.toggle}
           />
         </li>

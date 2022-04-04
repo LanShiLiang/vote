@@ -1,5 +1,5 @@
 import React from 'react'
-import './create.less'
+import './Create.less'
 import {Link} from 'react-router-dom'
 import {
   DiffTwoTone
@@ -17,7 +17,6 @@ export default function Create(){
         < DiffTwoTone />
       <Link to="/create-vote?multiple=1"><div>创建多选</div></Link>
       </div>
-
     </div>
   )
 }
