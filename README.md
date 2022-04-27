@@ -8,8 +8,8 @@
 * 遇到node-sass报错请阅读此文档改变node-sass版本：https://www.npmjs.com/package/node-sass
 #### 关于本项目:
 
-* 框架：**react**、亮点：**websocket**，两个用户可以实时进行投票通信
-
+* 框架：**react**、亮点：**websocket**，多用户可以实时进行投票通信
+* 技术栈：React，Sass，Axios，AntDesign，NodeJS，Sqlite3...
 * `"proxy":"http://localhost:8081/"` 反向代理引入接口解决了跨域的问题
 
 * 将VoteInfo的所有选项进行遍历再创建一个单元来显示投票结果
